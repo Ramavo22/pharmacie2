@@ -17,7 +17,7 @@ public class Laboratoire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(nullable = false)
+    @Column
     String label;
     
 }

@@ -45,7 +45,7 @@ CREATE TABLE medicament_maladie(
 
 CREATE TABLE stock(
    id VARCHAR(50) ,
-   date_mouvement TIMESTAMP NOT NULL,
+   date_mouvement VARCHAR(50) ,
    entree INTEGER,
    sortie INTEGER NOT NULL,
    medicament_id INTEGER NOT NULL,
