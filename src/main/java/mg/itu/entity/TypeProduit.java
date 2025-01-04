@@ -1,7 +1,5 @@
 package mg.itu.entity;
 
-import javax.annotation.processing.Generated;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,13 +9,11 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Laboratoire {
-
+public class TypeProduit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Short id;
 
     @Column(nullable = false)
     String label;
-    
 }

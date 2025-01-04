@@ -1,23 +1,20 @@
 package mg.itu.entity;
 
-import javax.annotation.processing.Generated;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.GenerationType;
 import lombok.Data;
 
 @Entity
 @Data
-public class Laboratoire {
-
+public class Maladie {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column(nullable = false)
     String label;
-    
 }
