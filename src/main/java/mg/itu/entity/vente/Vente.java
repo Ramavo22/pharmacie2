@@ -1,6 +1,6 @@
-package mg.itu.entity;
+package mg.itu.entity.vente;
 
-import javax.annotation.processing.Generated;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,13 +11,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Laboratoire {
-
+public class Vente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column(nullable = false)
-    String label;
-    
+    LocalDateTime dateVente;
+
+    @Column(nullable = false)
+    String client;
 }
