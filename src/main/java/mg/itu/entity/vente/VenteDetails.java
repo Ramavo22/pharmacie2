@@ -29,7 +29,6 @@ public class VenteDetails {
 
     @Column(nullable = false)
     Double prixUnitaire;
-
     /*
      * Calcul automatique (quantite * prixUnitaire)
      */

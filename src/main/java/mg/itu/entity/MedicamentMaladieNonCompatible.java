@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -16,6 +17,7 @@ public class MedicamentMaladieNonCompatible {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "medicament_id", nullable = false)
     Produit produit;
