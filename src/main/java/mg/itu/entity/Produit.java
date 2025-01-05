@@ -1,12 +1,17 @@
 package mg.itu.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produit {  
     /*
      * Corps de la classe Produit
@@ -36,9 +41,9 @@ public class Produit {
     /*
      * One To Many
      */
-    @OneToMany(mappedBy = "produit",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
     List<MedicamentMaladieNonCompatible> medicamentMaladieNonCompatibles;
 
-    @OneToMany(mappedBy = "produit",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
     List<MedicamentMaladie> medicamentMaladies;
 }
