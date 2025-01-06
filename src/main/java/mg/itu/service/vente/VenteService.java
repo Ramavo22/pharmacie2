@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import mg.itu.entity.Produit;
 import mg.itu.entity.vente.Vente;
 import mg.itu.entity.vente.VenteDetails;
-import mg.itu.exception.ProduitNotFoundException;
+import mg.itu.exception.EntityNotFoundException;
 import mg.itu.utils.JPAUtils;
 
 public class VenteService {
@@ -34,7 +34,7 @@ public class VenteService {
                 em.persist(venteDetails);
             }
         }
-        catch (ProduitNotFoundException produitNotFoundException){
+        catch (EntityNotFoundException produitNotFoundException){
             throw produitNotFoundException;
         }
         catch (Exception e){
