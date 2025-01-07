@@ -25,7 +25,7 @@ public class ProduitService {
                 /*
                  *   Insertion des maladies efficace pour les medicaments
                  * */
-                if(MaladieCompatibleIds != null){
+                if(MaladieCompatibleIds != null || !MaladieNonCompatibleIds.isEmpty()){
                     for (Integer maladieCompabibleId : MaladieCompatibleIds) {
                         MedicamentMaladie medicamentMaladie = new MedicamentMaladie();
 
@@ -41,7 +41,7 @@ public class ProduitService {
             /*
                 Insertion des maladies incompatible pour le medicament
              */
-                if(MaladieNonCompatibleIds != null){
+                if(MaladieNonCompatibleIds != null || !MaladieNonCompatibleIds.isEmpty()){
                     for(Integer maladieNonCompatibleId : MaladieNonCompatibleIds){
                         MedicamentMaladieNonCompatible medicamentMaladieNonCompatible = new MedicamentMaladieNonCompatible();
 

@@ -8,7 +8,7 @@
 <div class="col-md-3">
     <div class="list-group">
         <a href="${pageContext.request.contextPath}/laboratoire" class="list-group-item">CRUD Laboratoires</a>
-        <a href="typeProduit.jsp" class="list-group-item">CRUD Produits</a>
+        <a href="${pageContext.request.contextPath}/produit" class="list-group-item">CRUD Produits</a>
         <a href="${pageContext.request.contextPath}/maladie" class="list-group-item">CRUD Maladies</a>
     </div>
 </div>
