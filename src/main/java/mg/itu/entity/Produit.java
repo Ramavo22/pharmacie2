@@ -33,6 +33,10 @@ public class Produit {
     @ManyToOne
     @JoinColumn(name = "laboratoire_id", nullable = true)
     Laboratoire laboratoire;
+
+    @ManyToOne
+    @JoinColumn(name = "type_personne_id")
+    TypePersonne typePersonne;
     /*
      * Denormalisation du stock
      */

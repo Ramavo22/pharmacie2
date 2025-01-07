@@ -25,6 +25,7 @@ public class Main {
         for (Maladie maladie : maladies) {
             System.out.println(maladie);
         }
+        System.out.println("vitaaa");
 
     }
 }

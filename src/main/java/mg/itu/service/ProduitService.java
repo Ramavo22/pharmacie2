@@ -88,6 +88,8 @@ public class ProduitService {
         return produits;
     }
 
+
+
 //    public static void update(Produit produit){
 //        EntityManager em = JPAUtils.getEntityManager();
 //        em.getTransaction().begin();
