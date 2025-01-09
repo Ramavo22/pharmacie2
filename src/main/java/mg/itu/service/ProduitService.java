@@ -1,10 +1,12 @@
 package mg.itu.service;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import mg.itu.constante.Constante;
 import mg.itu.entity.*;
 import mg.itu.utils.JPAUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitService {
@@ -87,6 +89,49 @@ public class ProduitService {
         em.close();
         return produits;
     }
+
+    public static List<Produit> findAll(Integer typePersonneId, Integer maladieId) {
+        EntityManager em = JPAUtils.getEntityManager();
+
+        // Début de la requête de base
+        StringBuilder jpql = new StringBuilder("SELECT p FROM Produit p ");
+
+        // Jointure pour la table MedicamentMaladies
+        jpql.append("JOIN p.medicamentMaladies mm ");
+
+        // Liste pour les conditions
+        List<String> conditions = new ArrayList<>();
+
+        // Ajout de la condition pour le typePersonneId si spécifié
+        if (typePersonneId != null) {
+            conditions.add("p.typePersonne.id = :typePersonneId");
+        }
+
+        // Ajout de la condition pour le maladieId si spécifié
+        if (maladieId != null) {
+            conditions.add("mm.maladie.id = :maladieId");
+        }
+
+        // Ajouter les conditions à la requête
+        if (!conditions.isEmpty()) {
+            jpql.append("WHERE ");
+            jpql.append(String.join(" AND ", conditions));
+        }
+
+        // Création de la requête
+        TypedQuery<Produit> query = em.createQuery(jpql.toString(), Produit.class);
+
+        // Définir les paramètres si nécessaires
+        if (typePersonneId != null) {
+            query.setParameter("typePersonneId", typePersonneId);
+        }
+        if (maladieId != null) {
+            query.setParameter("maladieId", maladieId);
+        }
+
+        return query.getResultList();
+    }
+
 
 
 

@@ -91,43 +91,53 @@
                     <th>Nom</th>
                     <th>Prix</th>
                     <th>TypeProduit</th>
+                    <th>Dédie géneralement</th>
                     <th>Laboratoire</th>
                     <th>Maladie traité</th>
                     <th>Non Compatible</th>
                 </tr>
                 </thead>
                 <tbody>
-                <%for (Produit produit : produits) {%>
-                    <tr>
-                        <td><%=produit.getId()%></td>
-                        <td><%=produit.getLabel()%></td>
-                        <td><%=produit.getPrix()%></td>
-                        <td><%=produit.getTypeProduit().getLabel()%></td>
-                        <td><%=produit.getLaboratoire()!=null ? produit.getLaboratoire().getLabel() : "Non spécifier"%></td>
-                        <td><% if(produit.getMedicamentMaladies().size() > 0){%>
-                            <ul>
-                                <% for(MedicamentMaladie medicamentMaladie : produit.getMedicamentMaladies()){ %>
-                                    <li> <%=medicamentMaladie.getMaladie().getLabel()%> </li>
-                              <% }%>
-                            </ul>
-                            <% } else {%>
-                                <p>Null</p>
-                            <%}%>
-
-                        </td>
-                        <td><% if(produit.getMedicamentMaladieNonCompatibles().size() > 0){%>
-                            <ul>
-                                <% for(MedicamentMaladieNonCompatible medicamentMaladieNonCompatible : produit.getMedicamentMaladieNonCompatibles()){ %>
-                                <li> <%= medicamentMaladieNonCompatible.getMaladie().getLabel() %> </li>
-                                <% }%>
-                            </ul>
-                            <% }else {%>
-                            <p>Null</p>
-                            <%}%>
-                        </td>
-                    </tr>
-                <% }%>
+                <% if (produits != null && !produits.isEmpty()) { %>
+                <% for (Produit produit : produits) { %>
+                <tr>
+                    <td><%= produit.getId() %></td>
+                    <td><%= produit.getLabel() %></td>
+                    <td><%= produit.getPrix() %></td>
+                    <td><%= produit.getTypeProduit().getLabel() %></td>
+                    <td><%= produit.getTypePersonne().getNom() %></td>
+                    <td><%= produit.getLaboratoire() != null ? produit.getLaboratoire().getLabel() : "Non spécifier" %></td>
+                    <td>
+                        <% if (produit.getMedicamentMaladies().size() > 0) { %>
+                        <ul>
+                            <% for (MedicamentMaladie medicamentMaladie : produit.getMedicamentMaladies()) { %>
+                            <li><%= medicamentMaladie.getMaladie().getLabel() %></li>
+                            <% } %>
+                        </ul>
+                        <% } else { %>
+                        <p>Null</p>
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (produit.getMedicamentMaladieNonCompatibles().size() > 0) { %>
+                        <ul>
+                            <% for (MedicamentMaladieNonCompatible medicamentMaladieNonCompatible : produit.getMedicamentMaladieNonCompatibles()) { %>
+                            <li><%= medicamentMaladieNonCompatible.getMaladie().getLabel() %></li>
+                            <% } %>
+                        </ul>
+                        <% } else { %>
+                        <p>Null</p>
+                        <% } %>
+                    </td>
+                </tr>
+                <% } %>
+                <% } else { %>
+                <tr>
+                    <td colspan="8" style="text-align: center;">Aucun élément n'a été trouvé</td>
+                </tr>
+                <% } %>
                 </tbody>
+
             </table>
         </div>
     </div>
