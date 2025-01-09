@@ -1,5 +1,9 @@
 package mg.itu.servlet;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,14 +13,11 @@ import mg.itu.entity.Laboratoire;
 import mg.itu.entity.Maladie;
 import mg.itu.entity.Produit;
 import mg.itu.entity.TypeProduit;
+import mg.itu.entity.Usage;
 import mg.itu.service.LaboratoireService;
 import mg.itu.service.MaladieService;
 import mg.itu.service.ProduitService;
 import mg.itu.service.TypeProduitService;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/produit")
 public class ProduitServlet extends HttpServlet {
@@ -30,6 +31,10 @@ public class ProduitServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nom = req.getParameter("label");
         Double prix = Double.parseDouble(req.getParameter("prix"));
+
+        Integer usageId = Integer.parseInt(req.getParameter("usageId"));
+        Usage usage = new Usage();
+        usage.setId(usageId);
 
         // facultatif
         Integer laboratoireId = null;
@@ -58,6 +63,7 @@ public class ProduitServlet extends HttpServlet {
             produit.setLabel(nom);
             produit.setPrix(prix);
             produit.setEnStock(0);
+            produit.setUsage(usage);
 
             if(laboratoireId != null){
                 Laboratoire laboratoire = new Laboratoire();

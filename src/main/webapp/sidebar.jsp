@@ -10,7 +10,11 @@
         <a href="${pageContext.request.contextPath}/laboratoire" class="list-group-item">CRUD Laboratoires</a>
         <a href="${pageContext.request.contextPath}/produit" class="list-group-item">CRUD Produits</a>
         <a href="${pageContext.request.contextPath}/maladie" class="list-group-item">CRUD Maladies</a>
-        <a href="${pageContext.request.contextPath}/rechercheMaladie" class="list-group-item">CRUD Maladies</a>
+        <a href="${pageContext.request.contextPath}/rechercheMaladie" class="list-group-item">Recherche Maladies</a>
+        <a href="${pageContext.request.contextPath}/vente" class="list-group-item">CRUD Vente</a>
+        <a href="${pageContext.request.contextPath}/rechercheVente" class="list-group-item">Recherche Vente</a>
+
+
 
     </div>
 </div>

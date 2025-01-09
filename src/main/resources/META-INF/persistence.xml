@@ -18,12 +18,13 @@
         <class>mg.itu.entity.vente.Vente</class>
         <class>mg.itu.entity.vente.VenteDetails</class>
         <class>mg.itu.entity.TypePersonne</class>
+        <class>mg.itu.entity.Usage</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pharmacie2"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>
-            <property name="jakarta.persistence.jdbc.password" value="2547"/>
+            <property name="jakarta.persistence.jdbc.password" value="211005"/>
             
             <!-- Configuration d'Hibernate -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
