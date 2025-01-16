@@ -1,11 +1,13 @@
-<%@ page import="mg.itu.entity.vente" %>
 <%@ page import="java.util.List" %>
+<%@ page import="mg.itu.entity.vente.Vente" %>
+<%@ page import="mg.itu.entity.produit.Produit" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    List<vente> vente = (List<vente>) request.getAttribute("vente");
-    vente modifLab = (vente) request.getAttribute("modifLab");
+    List<Vente> ventes = (List<Vente>) request.getAttribute("vente");
+    Vente modifLab = (Vente) request.getAttribute("modifLab");
     String action  = (String) request.getAttribute("action");
+    List<Produit> produits = (List<Produit>) request.getAttribute("produits");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +36,14 @@
                      
                         <select name="produitId" class="form-control">
                             <option value="">Choisir</option>
+                            <% for(Produit produit : produits){ %>
+                            <option value="<%=produit.getId()%>"><%=produit.getLabel()%></option>
+                            <% } %>
                         </select>
                         <label class="label label-info">Quantite :</label>
-                        <input type="number" class="form-control" id="nom" name="quantite" value="" required>
-        
-
+                        <input type="number" class="form-control" id="nom" name="quantite" value="" required>8
                         <label for="date" class="label label-info">Date :</label>
-                        <input type="date" class="form-control" id="date" name="date" value="" required>
+                        <input type="datetime-local" class="form-control" id="date" name="date" value="" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Ajouter</button>
@@ -52,25 +55,34 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nom</th>
-                        <th>Actions</th>
+                        <th>Produit</th>
+                        <th>Prix Unitaire</th>
+                        <th>Qte</th>
+                        <th>Prix Total</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (vente vente : vente) {%>
-                        <tr>
-                            <td><%= vente.getId() %></td>
-                            <td><%= vente.getLabel()%></td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/vente?action=ToUpdate&&id=<%= vente.getId() %>">
-                                    <button class="btn btn-warning">Modifier</button>
-                                </a>
-                                <a href="${pageContext.request.contextPath}/vente?action=delete&&id=<%= vente.getId() %>">
-                                    <button class="btn btn-danger">Supprimer</button>
-                                </a>
-                            </td>
-                        </tr>
-                    <% } %>
+                    <%
+                        if (ventes != null && !ventes.isEmpty()) {
+                            for (Vente vente : ventes) {
+                    %>
+                    <tr>
+                        <td><%= vente.getId() %></td>
+                        <td><%= vente.getProduit().getLabel() %></td>
+                        <td><%= vente.getPrixUnitaire() %></td>
+                        <td><%= vente.getQuantite() %></td>
+                        <td><%= vente.getQuantite() * vente.getPrixUnitaire() %></td>
+                    </tr>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Pas de vente</td>
+                    </tr>
+                    <%
+                        }
+                    %>
                     </tbody>
                 </table>
             </div>

@@ -29,7 +29,7 @@ public class VenteService {
         }
     }
 
-    public List<Vente> findByTypePersAndUsage(Integer typePersonneId, Integer usageId) {
+    public static List<Vente> findByTypePersAndUsage(Integer typePersonneId, Integer usageId) {
         EntityManager em = JPAUtils.getEntityManager();
         
         String jpql = "SELECT v FROM Vente v WHERE 1=1";

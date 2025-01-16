@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="mg.itu.entity.*" %><%--
-  Created by IntelliJ IDEA.
+<%@ page import="mg.itu.entity.*" %>
+<%@ page import="mg.itu.entity.vente.Vente" %>
+
+Created by IntelliJ IDEA.
   User: Ramavo Harinaivo
   Date: 09/01/2025
   Time: 08h59
@@ -8,11 +10,10 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    List<Produit> produits = (List<Produit>) request.getAttribute("produits");
-    List<Vente> maladies = (List<Vente>) request.getAttribute("maladies");
-    List<TypePersonne> typePersonnes = (List<TypePersonne>) request.getAttribute("typePersonnes");
+    List<TypePersonne> typePersonnes = (List<TypePersonne>) request.getAttribute("typePers");
+    List<Usage> usages = (List<Usage>) request.getAttribute("usages");
 
-
+    List<Vente> ventes = (List<Vente>) request.getAttribute("ventes");
 
 %>
 <!DOCTYPE html>
@@ -36,10 +37,10 @@
             <div class="row">
 
                 <h1 class="h1 text-center"> Recherche Vente</h1>
-                <form action="${pageContext.request.contextPath}/rechercheMaladie" method="post">
+                <form action="${pageContext.request.contextPath}/rechercheVente" method="post">
                     <div class="col-lg-4">
                         <label class="label label-info">Usage</label>
-                        <select class="form-control" >
+                        <select class="form-control" name="usageId">
                             <option value="">choisir</option>
                             <% for(Usage usage : usages){ %>
                             <option value="<%=usage.getId()%>"><%=usage.getLabel()%></option>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label class="label label-info">Personne</label>
-                        <select class="form-control" name="typePersonneId">
+                        <select class="form-control" name="typePersId">
                             <option value="">choisir</option>
                             <% for(TypePersonne typePersonne : typePersonnes){ %>
                             <option value="<%=typePersonne.getId()%>"><%=typePersonne.getNom()%></option>
@@ -66,44 +67,24 @@
                 <thead>
                 <tr>
                     <th>ID</th>
+                    <th>date de vente</th>
                     <th>Produit</th>
-                    <th>qte</th>
-                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix vente</th>
                 
                 </tr>
                 </thead>
-                <%-- <tbody>
-                <% if (produits != null && !produits.isEmpty()) { %>
-                <% for (Produit produit : produits) { %>
+                 <tbody>
+                <% if (ventes != null && !ventes.isEmpty()) { %>
+                <% for (Vente vente : ventes) { %>
                 <tr>
-                    <td><%= produit.getId() %></td>
-                    <td><%= produit.getLabel() %></td>
-                    <td><%= produit.getPrix() %></td>
-                    <td><%= produit.getTypeProduit().getLabel() %></td>
-                    <td><%= produit.getTypePersonne().getNom() %></td>
-                    <td><%= produit.getLaboratoire() != null ? produit.getLaboratoire().getLabel() : "Non spécifier" %></td>
-                    <td>
-                        <% if (produit.getMedicamentMaladies().size() > 0) { %>
-                        <ul>
-                            <% for (MedicamentMaladie medicamentMaladie : produit.getMedicamentMaladies()) { %>
-                            <li><%= medicamentMaladie.getMaladie().getLabel() %></li>
-                            <% } %>
-                        </ul>
-                        <% } else { %>
-                        <p>Null</p>
-                        <% } %>
-                    </td>
-                    <td>
-                        <% if (produit.getMedicamentMaladieNonCompatibles().size() > 0) { %>
-                        <ul>
-                            <% for (MedicamentMaladieNonCompatible medicamentMaladieNonCompatible : produit.getMedicamentMaladieNonCompatibles()) { %>
-                            <li><%= medicamentMaladieNonCompatible.getMaladie().getLabel() %></li>
-                            <% } %>
-                        </ul>
-                        <% } else { %>
-                        <p>Null</p>
-                        <% } %>
-                    </td>
+                    <td><%=vente.getId()%></td>
+                    <td><%=vente.getDateVente()%></td>
+                    <td><%=vente.getProduit().getLabel()%></td>
+                    <td><%=vente.getQuantite()%></td>
+                    <td><%=vente.getPrixUnitaire()%></td>
+                    <td><%=vente.getPrixUnitaire()* vente.getQuantite()%></td>
                 </tr>
                 <% } %>
                 <% } else { %>
@@ -111,7 +92,7 @@
                     <td colspan="8" style="text-align: center;">Aucun élément n'a été trouvé</td>
                 </tr>
                 <% } %>
-                </tbody> --%>
+                </tbody>
 
             </table>
         </div>

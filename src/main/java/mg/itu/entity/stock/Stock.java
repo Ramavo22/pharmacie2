@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 
 import lombok.Data;
 
-import mg.itu.entity.Produit;
+import mg.itu.entity.produit.Produit;
 
 @Entity
 @Data

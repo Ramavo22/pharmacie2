@@ -9,15 +9,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mg.itu.entity.Laboratoire;
-import mg.itu.entity.Maladie;
-import mg.itu.entity.Produit;
-import mg.itu.entity.TypeProduit;
-import mg.itu.entity.Usage;
-import mg.itu.service.LaboratoireService;
-import mg.itu.service.MaladieService;
-import mg.itu.service.ProduitService;
-import mg.itu.service.TypeProduitService;
+import mg.itu.entity.*;
+import mg.itu.entity.produit.Produit;
+import mg.itu.service.*;
+import mg.itu.service.produit.ProduitService;
 
 @WebServlet("/produit")
 public class ProduitServlet extends HttpServlet {
@@ -29,19 +24,32 @@ public class ProduitServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        /*
+            Données du formulaire
+         */
+        // nom
         String nom = req.getParameter("label");
+
+        // prix
         Double prix = Double.parseDouble(req.getParameter("prix"));
 
+        // usage
         Integer usageId = Integer.parseInt(req.getParameter("usageId"));
         Usage usage = new Usage();
         usage.setId(usageId);
 
-        // facultatif
+        // laboratoire
         Integer laboratoireId = null;
         if(!req.getParameter("laboratoireId").isEmpty()) laboratoireId = Integer.parseInt(req.getParameter("laboratoireId"));
-        // obli
+
+        // type Produits
         Integer typeProduitId = Integer.parseInt(req.getParameter("typeProduitId"));
 
+        // type de personne
+        Integer typePersonneId = null;
+        if( !req.getParameter("typePersonneId").isEmpty()) typePersonneId = Integer.parseInt(req.getParameter("typePersonneId"));
+
+        // les maladies compatibles
         String[] compatiblesStr = req.getParameterValues("compatibles[]");
         List<Integer> compatibles = new ArrayList<>();
         int i = 0;
@@ -50,6 +58,7 @@ public class ProduitServlet extends HttpServlet {
             i++;
         }
 
+        // les maladies imcompatibles
         String[] nonCompatiblesStr = req.getParameterValues("nonCompatibles[]");
         List<Integer> nonCompatibles = new ArrayList<>();
         i = 0;
@@ -59,6 +68,7 @@ public class ProduitServlet extends HttpServlet {
         }
 
         try {
+            // creation de la classe produits
             Produit produit = new Produit();
             produit.setLabel(nom);
             produit.setPrix(prix);
@@ -71,6 +81,12 @@ public class ProduitServlet extends HttpServlet {
                 produit.setLaboratoire(laboratoire);
             }
 
+            if(typePersonneId != null){
+                TypePersonne typePersonne = new TypePersonne();
+                typePersonne.setId(typePersonneId);
+                produit.setTypePersonne(typePersonne);
+            }
+
             TypeProduit typeProduit = new TypeProduit();
             typeProduit.setId(typeProduitId.shortValue());
             produit.setTypeProduit(typeProduit);
@@ -80,7 +96,6 @@ public class ProduitServlet extends HttpServlet {
         catch(Exception e){
             e.printStackTrace();
         }
-
         loadData(req,resp);
 
 
@@ -91,12 +106,16 @@ public class ProduitServlet extends HttpServlet {
         List<Laboratoire> laboratoires = LaboratoireService.findAll();
         List<TypeProduit> typeProduits = TypeProduitService.findAll();
         List<Maladie> maladies = MaladieService.findAll();
+        List<TypePersonne> personnes = TypePersonneService.findAll();
+        List<Usage> usages = UsageService.findAll();
         List<Produit> produits = ProduitService.findAll();
 
         req.setAttribute("laboratoires", laboratoires);
         req.setAttribute("typeProduits", typeProduits);
         req.setAttribute("maladies",maladies);
         req.setAttribute("produits",produits);
+        req.setAttribute("personnes",personnes);
+        req.setAttribute("usages",usages);
 
         req.getRequestDispatcher("produit.jsp").forward(req, resp);
     }

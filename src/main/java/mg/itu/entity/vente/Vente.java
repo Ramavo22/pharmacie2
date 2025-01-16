@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
-import mg.itu.entity.Produit;
+import mg.itu.entity.produit.Produit;
 
 @Entity
 @Data
@@ -22,11 +22,13 @@ public class Vente {
     @Column(nullable = false)
     LocalDateTime dateVente;
 
-
     @ManyToOne
-    @JoinColumn(name = "produit_id")
+    @JoinColumn(name = "produit_id" , nullable = false)
     Produit produit;
 
     @Column(nullable = false)
     Integer quantite;
+
+    @Column(nullable = false)
+    Double prixUnitaire;
 }

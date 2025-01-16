@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mg.itu.entity.Maladie;
-import mg.itu.entity.Produit;
+import mg.itu.entity.produit.Produit;
 import mg.itu.entity.TypePersonne;
 import mg.itu.service.MaladieService;
-import mg.itu.service.ProduitService;
+import mg.itu.service.produit.ProduitService;
 import mg.itu.service.TypePersonneService;
 
 import java.io.IOException;

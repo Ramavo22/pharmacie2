@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.*" %>
+<%@ page import="mg.itu.entity.produit.Produit" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
@@ -7,7 +8,9 @@
     List<Laboratoire> laboratoires = (List<Laboratoire>) request.getAttribute("laboratoires");
     List<TypeProduit> typeProduits = (List<TypeProduit>) request.getAttribute("typeProduits");
     List<Maladie> maladies = (List<Maladie>) request.getAttribute("maladies");
-    List<Produit> produits = (List<Produit>) request.getAttribute("produits");
+    List<TypePersonne> typePersonnes = (List<TypePersonne>) request.getAttribute("personnes");
+     List<Produit> produits = (List<Produit>) request.getAttribute("produits");
+     List<Usage> usages = (List<Usage>) request.getAttribute("usages");
 
 %>
 <!DOCTYPE html>
@@ -49,6 +52,20 @@
                         <option value="">choisir</option>
                         <% for (TypeProduit typeProduit : typeProduits) {%>
                         <option value="<%=typeProduit.getId()%>"><%=typeProduit.getLabel()%></option>
+                        <% } %>
+                    </select>
+                    <label for="typePersonne">Pour quel personne</label>
+                    <select class="form-control" name="typePersonneId" id = "typePersonne">
+                        <option value="">choisir</option>
+                        <% for (TypePersonne typePersonne : typePersonnes) {%>
+                        <option value="<%=typePersonne.getId()%>"><%=typePersonne.getNom()%></option>
+                        <% } %>
+                    </select>
+                    <label for="Usage">Utilisation</label>
+                    <select class="form-control" name="usageId" id = "Usage">
+                        <option value="">choisir</option>
+                        <% for (Usage usage : usages) {%>
+                        <option value="<%=usage.getId()%>"><%=usage.getLabel()%></option>
                         <% } %>
                     </select>
                     <div id="maladiesContainer">

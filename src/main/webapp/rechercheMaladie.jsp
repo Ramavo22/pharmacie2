@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="mg.itu.entity.*" %><%--
+<%@ page import="mg.itu.entity.*" %>
+<%@ page import="mg.itu.entity.produit.Produit" %><%--
   Created by IntelliJ IDEA.
   User: Ramavo Harinaivo
   Date: 09/01/2025

@@ -1,4 +1,4 @@
-package mg.itu.entity;
+package mg.itu.entity.produit;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mg.itu.entity.*;
 
 @Entity
 @Data
@@ -47,7 +48,7 @@ public class Produit {
 
 
     @ManyToOne
-    @JoinColumn(name="usage_id")
+    @JoinColumn(name="usage_id", nullable = true)
     Usage usage;
     /*
      * Denormalisation du stock

@@ -8,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.ToString;
+import mg.itu.entity.produit.Produit;
 
 @Entity
 @Data

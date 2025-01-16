@@ -1,9 +1,10 @@
-package mg.itu.service;
+package mg.itu.service.produit;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import mg.itu.constante.Constante;
 import mg.itu.entity.*;
+import mg.itu.entity.produit.Produit;
 import mg.itu.utils.JPAUtils;
 
 import java.util.ArrayList;

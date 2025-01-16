@@ -13,8 +13,7 @@
         <a href="${pageContext.request.contextPath}/rechercheMaladie" class="list-group-item">Recherche Maladies</a>
         <a href="${pageContext.request.contextPath}/vente" class="list-group-item">CRUD Vente</a>
         <a href="${pageContext.request.contextPath}/rechercheVente" class="list-group-item">Recherche Vente</a>
-
-
-
+        <a href="${pageContext.request.contextPath}/produitMois" class="list-group-item">Produits du mois</a>
+        <a href="${pageContext.request.contextPath}/rechercheProduitMois" class="list-group-item">Recherche produits du mois</a>
     </div>
 </div>
