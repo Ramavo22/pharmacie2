@@ -134,5 +134,7 @@ INSERT INTO vente (produit_id, prixunitaire, quantite, datevente, client_id) VAL
     (19, 4000, 18, '2025-01-19 10:30:00', 1), -- Spray Nasal par Rakoto
     (20, 8000, 10, '2025-01-20 15:00:00', 2); -- Antiviral Oral par Rabe
 
-
+INSERT INTO genre (label) VALUES
+(Homme),
+(Femme);
 
