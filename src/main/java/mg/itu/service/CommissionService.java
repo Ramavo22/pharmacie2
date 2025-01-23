@@ -24,10 +24,10 @@ public class CommissionService {
         WHERE 1 = 1
         """;
         if(start != null){
-            sql += " AND FUNCTION('date', c.date) = :start";
+            sql += " AND FUNCTION('date', c.date) >= :start";
         }
         if(end != null){
-            sql += " AND FUNCTION('date', c.date) = :end";
+            sql += " AND FUNCTION('date', c.date) <= :end";
         }
         sql += " GROUP BY c.vente.vendeur";
         TypedQuery<CommissionVendeurDTO> query = em.createQuery(sql, CommissionVendeurDTO.class);
