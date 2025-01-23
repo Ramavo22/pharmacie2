@@ -10,7 +10,6 @@ public class UsageService {
     
     public static List<Usage> findAll () {
         EntityManager em = JPAUtils.getEntityManager();
-
         return em.createQuery("select u from Usage u", Usage.class).getResultList();
     }
 }

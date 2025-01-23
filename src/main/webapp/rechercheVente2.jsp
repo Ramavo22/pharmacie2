@@ -1,19 +1,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.*" %>
 <%@ page import="mg.itu.entity.vente.Vente" %>
+<%@ page import="java.util.HashSet" %>
 
-Created by IntelliJ IDEA.
-  User: Ramavo Harinaivo
-  Date: 09/01/2025
-  Time: 08h59
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    List<Clients> Client = (List<Clients>) request.getAttribute("client");
-    List<Usage> usages = (List<Usage>) request.getAttribute("usages");
-
+    List<Client> clients = (List<Client>) request.getAttribute("clients");
     List<Vente> ventes = (List<Vente>) request.getAttribute("ventes");
+    HashSet<Client> clients1 = (HashSet<Client>) request.getAttribute("today");
 
 %>
 <!DOCTYPE html>
@@ -37,19 +32,19 @@ Created by IntelliJ IDEA.
             <div class="row">
 
                 <h1 class="h1 text-center"> Recherche Vente Par Clients</h1>
-                <form action="${pageContext.request.contextPath}/rechercheVente" method="post">
-                    <div class="col-lg-4">
+                <form action="${pageContext.request.contextPath}/rechercheVente2" method="post">
+                    <!--div class="col-lg-4">
                         <label class="label label-info">Clients :</label>
-                        <select class="form-control" name="ClientsId">
+                        <select class="form-control" name="clientId">
                             <option value="">choisir</option>
-                            <% for(Client Client : clients){ %>
-                            <option value="<%=Client.getId()%>"><%=Client.getNom()%></option>
+                            <% for(Client client : clients){ %>
+                            <option value="<%=client.getId()%>"><%=client.getLabel()%></option>
                             <%  }%>
                         </select>
-                    </div>
+                    </div-->
                     <div class="col-lg-4">
                         <label for="date" class="label label-info">Date :</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="date" class="form-control" id="date" name="date">
                     </div>
                    
                     <div class="col-lg-2">
@@ -63,27 +58,20 @@ Created by IntelliJ IDEA.
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>date de vente</th>
                     <th>Clients</th>
-                    <th>Produits</th>
-                  
-                
                 </tr>
                 </thead>
                  <tbody>
-                <% if (ventes != null && !ventes.isEmpty()) { %>
-                <% for (Vente vente : ventes) { %>
+                <% if (clients1 != null && !clients1.isEmpty()) { %>
+                <% for (Client client : clients1) { %>
                 <tr>
-                    <td><%=vente.getId()%></td>
-                    <td><%=vente.getDateVente()%></td>
-                    <td><%=vente.getClient()%></td>
-                    <td><%=vente.getProduit().getLabel()%></td>
-
+                    <td><%=client.getId()%></td>
+                    <td><%=client.getLabel()%></td>
                 </tr>
                 <% } %>
                 <% } else { %>
                 <tr>
-                    <td colspan="8" style="text-align: center;">Aucun élément n'a été trouvé</td>
+                    <td colspan="2" style="text-align: center;">Aucun élément n'a été trouvé</td>
                 </tr>
                 <% } %>
                 </tbody>

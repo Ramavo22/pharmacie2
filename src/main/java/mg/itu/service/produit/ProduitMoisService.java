@@ -40,6 +40,27 @@ public class ProduitMoisService {
         return query.getResultList();
     }
 
+    public static List<ProduitMois> findAllByMonth2(Integer month,Integer year) {
+        EntityManager em = JPAUtils.getEntityManager();
+        String jpql = """
+            SELECT pm FROM ProduitMois pm WHERE 1=1
+            """;
+        if(month != null) {
+            jpql += " AND EXTRACT(MONTH FROM pm.date) = :month";
+        }
+        if(year != null) {
+            jpql += " AND EXTRACT(YEAR FROM pm.date) = :year";
+        }
+        TypedQuery<ProduitMois> query = em.createQuery(jpql, ProduitMois.class);
+        if(month != null) {
+            query.setParameter("month", month);
+        }
+        if(year != null){
+            query.setParameter("year", year);
+        }
+        return query.getResultList();
+    }
+
     public static List<ProduitMois> findAll() {
         EntityManager em = JPAUtils.getEntityManager();
         return em.createQuery("SELECT pm FROM ProduitMois pm", ProduitMois.class).getResultList();

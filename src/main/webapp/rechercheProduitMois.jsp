@@ -30,7 +30,7 @@
         <div class="col-md-9">
             <div class="row">
 
-                <!--h1 class="h1 text-center"> Recherche Maladie</h1>
+                <h1 class="h1 text-center"> Recherche Produit du mois</h1>
                 <form action="${pageContext.request.contextPath}/rechercheProduitMois" method="post">
                     <div class="col-lg-4">
                         <label class="label label-info">Mois</label>
@@ -54,7 +54,7 @@
                         <button type="submit" class="btn btn-primary">Valider</button>
                     </div>
                 </form>
-            </div-->
+            </div>
 
             <h2>Liste des produits du mois</h2>
             <table class="table table-bordered table-striped">

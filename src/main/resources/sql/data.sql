@@ -1,3 +1,12 @@
+truncate table typeproduit restart identity cascade;
+truncate table typepersonne restart identity cascade;
+truncate table usage restart identity cascade;
+truncate table laboratoire restart identity cascade;
+truncate table commission restart identity cascade;
+truncate table vente restart identity cascade;
+truncate table vendeur restart identity cascade;
+
+
 INSERT INTO typeproduit (label) values
     ('Medicament'),
     ('Accessoire');
@@ -89,29 +98,41 @@ INSERT INTO medicamentmaladie (maladie_id, medicament_id) VALUES
                                                               (18, 18), -- Suppositoire pour la Fièvre pour Douleurs abdominales
                                                               (19, 10), -- Pommade Hydratante pour Anémie (symptômes liés à la peau)
                                                               (20, 2); -- Vaccin Anti-Grippe pour Virus respiratoire
+INSERT INTO client (label) VALUES
+                       ('Rakoto'),
+                       ('Rabe'),
+                       ('Rajao'),
+                       ('Ramavo'),
+                       ('Raharijaona'),
+                       ('Rakotodranivo');
 
+INSERT INTO vendeur (name) VALUES
+                       ('Vendeur 1'),
+                       ('Vendeur 2'),
+                       ('Vendeur 3'),
+                       ('Vendeur 4');
 
-INSERT INTO vente (produit_id, prixunitaire, quantite, datevente) VALUES
-(1, 5000, 10, '2025-01-01 09:00:00'), -- Vente de Paracétamol
-(2, 7500, 5, '2025-01-02 10:30:00'), -- Vaccin Anti-Grippe
-(3, 12000, 3, '2025-01-03 14:00:00'), -- Crème Anti-brûlure
-(4, 4500, 15, '2025-01-04 16:00:00'), -- Ibuprofène
-(5, 2000, 20, '2025-01-05 08:30:00'), -- Ovule Médicinal
-(6, 3000, 8, '2025-01-06 11:45:00'), -- Gouttes Auriculaires
-(7, 8000, 6, '2025-01-07 12:00:00'), -- Collyre Antiseptique
-(8, 5000, 12, '2025-01-08 13:15:00'), -- Suppositoire Anti-douleur
-(9, 10000, 4, '2025-01-09 10:00:00'), -- Vaccin Anti-Hépatite B
-(10, 3500, 7, '2025-01-10 15:30:00'), -- Pommade Hydratante
-(11, 9000, 3, '2025-01-11 17:45:00'), -- Antibiotique
-(12, 15000, 2, '2025-01-12 09:15:00'), -- Suppositoire Fébrile
-(13, 2500, 25, '2025-01-13 11:00:00'), -- Gouttes Nasales Enfant
-(14, 6000, 9, '2025-01-14 16:45:00'), -- Collyre Hydratant
-(15, 12000, 5, '2025-01-15 14:30:00'), -- Antihistaminique
-(16, 1000, 30, '2025-01-16 10:00:00'), -- Ovule Anti-fongique
-(17, 7000, 6, '2025-01-17 13:00:00'), -- Crème Anti-Démangeaison
-(18, 11000, 3, '2025-01-18 09:45:00'), -- Suppositoire pour la Fièvre
-(19, 4000, 18, '2025-01-19 10:30:00'), -- Spray Nasal
-(20, 8000, 10, '2025-01-20 15:00:00'); -- Antiviral Oral
+INSERT INTO vente (produit_id, prixunitaire, quantite, datevente, client_id) VALUES
+    (1, 5000, 10, '2025-01-01 09:00:00', 1), -- Vente de Paracétamol par Rakoto
+    (2, 7500, 5, '2025-01-02 10:30:00', 2), -- Vaccin Anti-Grippe par Rabe
+    (3, 12000, 3, '2025-01-03 14:00:00', 3), -- Crème Anti-brûlure par Rajao
+    (4, 4500, 15, '2025-01-04 16:00:00', 4), -- Ibuprofène par Ramavo
+    (5, 2000, 20, '2025-01-05 08:30:00', 5), -- Ovule Médicinal par Raharijaona
+    (6, 3000, 8, '2025-01-06 11:45:00', 6), -- Gouttes Auriculaires par Rakotodranivo
+    (7, 8000, 6, '2025-01-07 12:00:00', 1), -- Collyre Antiseptique par Rakoto
+    (8, 5000, 12, '2025-01-08 13:15:00', 2), -- Suppositoire Anti-douleur par Rabe
+    (9, 10000, 4, '2025-01-09 10:00:00', 3), -- Vaccin Anti-Hépatite B par Rajao
+    (10, 3500, 7, '2025-01-10 15:30:00', 4), -- Pommade Hydratante par Ramavo
+    (11, 9000, 3, '2025-01-11 17:45:00', 5), -- Antibiotique par Raharijaona
+    (12, 15000, 2, '2025-01-12 09:15:00', 6), -- Suppositoire Fébrile par Rakotodranivo
+    (13, 2500, 25, '2025-01-13 11:00:00', 1), -- Gouttes Nasales Enfant par Rakoto
+    (14, 6000, 9, '2025-01-14 16:45:00', 2), -- Collyre Hydratant par Rabe
+    (15, 12000, 5, '2025-01-15 14:30:00', 3), -- Antihistaminique par Rajao
+    (16, 1000, 30, '2025-01-16 10:00:00', 4), -- Ovule Anti-fongique par Ramavo
+    (17, 7000, 6, '2025-01-17 13:00:00', 5), -- Crème Anti-Démangeaison par Raharijaona
+    (18, 11000, 3, '2025-01-18 09:45:00', 6), -- Suppositoire pour la Fièvre par Rakotodranivo
+    (19, 4000, 18, '2025-01-19 10:30:00', 1), -- Spray Nasal par Rakoto
+    (20, 8000, 10, '2025-01-20 15:00:00', 2); -- Antiviral Oral par Rabe
 
 
 

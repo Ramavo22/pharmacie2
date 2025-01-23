@@ -28,15 +28,15 @@ public class RechercheProduitMoisServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer month = Integer.parseInt(req.getParameter("month"));
-        Integer year = Integer.parseInt(req.getParameter("year"));
+        Integer month = null;
+        Integer year = null;
 
-        LocalDate date = LocalDate.now();
-        month = date.getMonthValue();
-        year = date.getYear();
+        if(!req.getParameter("month").isEmpty()) month = Integer.parseInt(req.getParameter("month"));
+        if(!req.getParameter("year").isEmpty()) year = Integer.parseInt(req.getParameter("year"));
 
-        List<ProduitMois> produitMoisList = ProduitMoisService.findAllByMonth(month, year);
+        System.out.println(req.getParameter("month")+" "+req.getParameter("year"));
+        List<ProduitMois> produitMoisList = ProduitMoisService.findAllByMonth2(month,year);
         req.setAttribute("produitMois", produitMoisList);
-        doGet(req, resp);
+        req.getRequestDispatcher("rechercheProduitMois.jsp").forward(req, resp);
     }
 }

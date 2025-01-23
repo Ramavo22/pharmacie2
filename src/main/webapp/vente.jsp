@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.vente.Vente" %>
 <%@ page import="mg.itu.entity.produit.Produit" %>
+<%@ page import="mg.itu.entity.Client" %>
+<%@ page import="mg.itu.entity.vente.Vendeur" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -8,6 +10,8 @@
     Vente modifLab = (Vente) request.getAttribute("modifLab");
     String action  = (String) request.getAttribute("action");
     List<Produit> produits = (List<Produit>) request.getAttribute("produits");
+    List<Client> clients = (List<Client>) request.getAttribute("clients");
+    List<Vendeur> vendeurs = (List<Vendeur>) request.getAttribute("vendeurs");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +37,9 @@
 
                 <form action="${pageContext.request.contextPath}/vente" method="post">
                     <div class="form-group">
-                     
+
+                        <label class="label label-info"> Produit</label>
                         <select name="produitId" class="form-control">
-                            <option value="">Choisir</option>
                             <% for(Produit produit : produits){ %>
                             <option value="<%=produit.getId()%>"><%=produit.getLabel()%></option>
                             <% } %>
@@ -44,6 +48,17 @@
                         <input type="number" class="form-control" id="nom" name="quantite" value="" required>8
                         <label for="date" class="label label-info">Date :</label>
                         <input type="datetime-local" class="form-control" id="date" name="date" value="" required>
+                        <label class="label label-info">Clients :</label>
+                        <select class="form-control" name="clientId">
+                            <% for(Client client : clients){ %>
+                            <option value="<%=client.getId()%>"><%=client.getLabel()%></option>
+                            <%  }%>
+                        </select>
+                        <select class="form-control" name="vendeurId">
+                            <% for(Vendeur vendeur : vendeurs){ %>
+                            <option value="<%=vendeur.getId()%>"><%=vendeur.getName()%></option>
+                            <%  }%>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Ajouter</button>
