@@ -23,15 +23,15 @@
   <div class="row">
     <%@ include file="sidebar.jsp" %>
     <div class="col-md-9">
-      <h1 class="text-center">Gestion des Laboratoires</h1>
+      <h1 class="text-center">Gestion des Vendeurs</h1>
       <hr>
 
-      <h1>Insertion Laboratoire</h1>
-      <p>Remplissez le formulaire ci-dessous pour ajouter un nouveau laboratoire.</p>
+      <h1>Insertion Vendeur</h1>
+      <p>Remplissez le formulaire ci-dessous pour ajouter un nouveau vendeur.</p>
 
       <form action="${pageContext.request.contextPath}/vendeur" method="post">
         <div class="form-group">
-          <label for="nom">Nom du Laboratoire :</label>
+          <label for="nom">Nom du Vendeur :</label>
           <input type="text" class="form-control" id="nom" name="nom" required>
         </div>
 
@@ -39,7 +39,7 @@
       </form>
 
       <!-- Tableau pour afficher la liste des laboratoires -->
-      <h2>Liste des Laboratoires</h2>
+      <h2>Liste des Vendeurs</h2>
       <table class="table table-bordered table-striped">
         <thead>
         <tr>

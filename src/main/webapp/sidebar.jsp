@@ -20,6 +20,7 @@
         <a href="${pageContext.request.contextPath}/produitMois" class="list-group-item">Produits du mois</a>
         <a href="${pageContext.request.contextPath}/rechercheProduitMois" class="list-group-item">Recherche produits du mois</a>
 
+        <a href="${pageContext.request.contextPath}/vendeur" class="list-group-item">vendeur</a>
         <a href="${pageContext.request.contextPath}/commission" class="list-group-item">Commission vendeur</a>
         <a href="${pageContext.request.contextPath}/commission2" class="list-group-item">Commission vendeur 2</a>
 
