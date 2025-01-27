@@ -35,5 +35,8 @@ public class MedicamentMaladieService {
         catch (Exception e) {
             if(em.getTransaction().isActive()) em.getTransaction().rollback();
         }
+        finally {
+            if(em.isOpen()) em.close();
+        }
     }
 }

@@ -1,15 +1,18 @@
 package mg.itu.service.vente;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.EntityManager;
-import mg.itu.entity.Produit;
+import jakarta.persistence.TypedQuery;
+import mg.itu.entity.commission.Commission;
 import mg.itu.entity.vente.Vente;
-import mg.itu.entity.vente.VenteDetails;
 import mg.itu.exception.EntityNotFoundException;
 import mg.itu.utils.JPAUtils;
 
 public class VenteService {
 
-    public static void create(Vente vente, Integer[] produitsIds, Integer[] quantites){
+    public static void create(Vente vente){
         EntityManager em = JPAUtils.getEntityManager();
         try{
             /*
@@ -17,22 +20,15 @@ public class VenteService {
              */
             em.getTransaction().begin();
             em.persist(vente);
-            /*
-            *   Inserer les details de la ventes
-            * */
-            for(int i = 0; i<produitsIds.length; i++){
-                VenteDetails venteDetails = new VenteDetails();
+            Commission commission = new Commission();
+            commission.setVente(vente);
+            double commissionValue = vente.getPrixUnitaire() * vente.getQuantite();
+            commission.setCommission(commissionValue * 5/100);
+            commission.setDate(vente.getDateVente());
+            em.persist(commission);
 
-                Produit produit = em.find(Produit.class, produitsIds[i]);
-
-                venteDetails.setVente(vente);
-                venteDetails.setProduit(produit);
-                venteDetails.setQuantite(quantites[i]);
-                venteDetails.setPrixUnitaire(produit.getPrix());
-                venteDetails.setPrixTotal(venteDetails.getPrixUnitaire()*venteDetails.getQuantite());
-
-                em.persist(venteDetails);
-            }
+            em.getTransaction().commit();
+           
         }
         catch (EntityNotFoundException produitNotFoundException){
             throw produitNotFoundException;
@@ -40,5 +36,54 @@ public class VenteService {
         catch (Exception e){
             e.printStackTrace();
         }
+        finally {
+            if(em.isOpen()) em.close();
+        }
     }
+
+    public static List<Vente> findByTypePersAndUsage(Integer typePersonneId, Integer usageId) {
+        EntityManager em = JPAUtils.getEntityManager();
+        
+        String jpql = "SELECT v FROM Vente v WHERE 1=1";
+        if (typePersonneId != null) {
+            jpql += " AND v.produit.typePersonne.id = :typePersonneId";
+        }
+        if (usageId != null) {
+            jpql += " AND v.produit.usage.id = :usageId";
+        }
+        TypedQuery<Vente> query = em.createQuery(jpql, Vente.class);
+        if (typePersonneId != null) {
+            query.setParameter("typePersonneId", typePersonneId);
+        }
+        if (usageId != null) {
+            query.setParameter("usageId", usageId);
+        }
+        List<Vente> ventes = query.getResultList();
+        if(em.isOpen()) em.close();
+        return ventes;
+    }
+
+
+    public static List<Vente> findByDateAndClient(Integer clientId, LocalDate date) {
+        EntityManager em = JPAUtils.getEntityManager();
+
+        String jpql = "SELECT v FROM Vente v WHERE 1=1";
+        if (clientId != null) {
+            jpql += " AND v.client.id = :clientId";
+        }
+        if (date != null) {
+            jpql += " AND FUNCTION('date', v.dateVente) = :date";
+        }
+        TypedQuery<Vente> query = em.createQuery(jpql, Vente.class);
+        if (clientId != null) {
+            query.setParameter("clientId", clientId);
+        }
+        if (date != null) {
+            query.setParameter("date", date);
+        }
+        List<Vente> ventes = query.getResultList();
+        if(em.isOpen()) em.close();
+        return ventes;
+    }
+
 }

@@ -6,7 +6,7 @@
         <class>mg.itu.entity.Laboratoire</class>
         <class>mg.itu.entity.TypeProduit</class>
 
-        <class>mg.itu.entity.Produit</class>
+        <class>mg.itu.entity.produit.Produit</class>
 
         <class>mg.itu.entity.Maladie</class>
 
@@ -16,8 +16,14 @@
         <class>mg.itu.entity.stock.Stock</class>
         
         <class>mg.itu.entity.vente.Vente</class>
-        <class>mg.itu.entity.vente.VenteDetails</class>
         <class>mg.itu.entity.TypePersonne</class>
+        <class>mg.itu.entity.Usage</class>
+        <class>mg.itu.entity.produit.ProduitMois</class>
+        <class>mg.itu.entity.Client</class>
+
+        <class>mg.itu.entity.vente.Vendeur</class>
+        <class>mg.itu.entity.commission.Commission</class>
+        <class>mg.itu.entity.Genre</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -27,7 +33,7 @@
             
             <!-- Configuration d'Hibernate -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/> <!-- Utilisez "validate", "update", "create", ou "create-drop" -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Utilisez "validate", "update", "create", ou "create-drop" -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>

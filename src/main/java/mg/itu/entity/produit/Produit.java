@@ -1,12 +1,20 @@
-package mg.itu.entity;
-
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package mg.itu.entity.produit;
 
 import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import mg.itu.entity.*;
 
 @Entity
 @Data
@@ -37,6 +45,11 @@ public class Produit {
     @ManyToOne
     @JoinColumn(name = "type_personne_id")
     TypePersonne typePersonne;
+
+
+    @ManyToOne
+    @JoinColumn(name="usage_id", nullable = true)
+    Usage usage;
     /*
      * Denormalisation du stock
      */

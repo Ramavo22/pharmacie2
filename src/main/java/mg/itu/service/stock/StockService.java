@@ -2,7 +2,6 @@ package mg.itu.service.stock;
 
 
 import jakarta.persistence.EntityManager;
-import mg.itu.entity.Produit;
 import mg.itu.entity.stock.Stock;
 import mg.itu.utils.JPAUtils;
 
@@ -55,4 +54,8 @@ public class StockService {
             if(em.isOpen()) em.close();
         }
     }
+
+    /*
+    *   Les nombres de medicament en stock
+    * */
 }

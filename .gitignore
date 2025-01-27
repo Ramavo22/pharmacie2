@@ -2,3 +2,5 @@
 target/
 .idea/
 pharmacie.iml
+
+src/main/resources/META-INF/persistence.xml

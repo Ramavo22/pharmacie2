@@ -8,7 +8,22 @@
 <div class="col-md-3">
     <div class="list-group">
         <a href="${pageContext.request.contextPath}/laboratoire" class="list-group-item">CRUD Laboratoires</a>
-        <a href="typeProduit.jsp" class="list-group-item">CRUD Produits</a>
+        <a href="${pageContext.request.contextPath}/produit" class="list-group-item">CRUD Produits</a>
+        
         <a href="${pageContext.request.contextPath}/maladie" class="list-group-item">CRUD Maladies</a>
+        <a href="${pageContext.request.contextPath}/rechercheMaladie" class="list-group-item">Recherche Maladies</a>
+
+        <a href="${pageContext.request.contextPath}/vente" class="list-group-item">CRUD Vente</a>
+        <a href="${pageContext.request.contextPath}/rechercheVente" class="list-group-item">Recherche Vente</a>
+        <a href="${pageContext.request.contextPath}/rechercheVente2" class="list-group-item">Recherche vente par clients</a>
+
+        <a href="${pageContext.request.contextPath}/produitMois" class="list-group-item">Produits du mois</a>
+        <a href="${pageContext.request.contextPath}/rechercheProduitMois" class="list-group-item">Recherche produits du mois</a>
+
+        <a href="${pageContext.request.contextPath}/vendeur" class="list-group-item">CRUD vendeur</a>
+        <a href="${pageContext.request.contextPath}/commission" class="list-group-item">Commission vendeur</a>
+        <a href="${pageContext.request.contextPath}/commission2" class="list-group-item">Commission vendeur 2</a>
+
+
     </div>
 </div>
