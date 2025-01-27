@@ -21,4 +21,5 @@ public class Maladie {
 
     @Column(nullable = false)
     String label;
+
 }

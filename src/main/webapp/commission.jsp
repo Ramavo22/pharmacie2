@@ -1,10 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.dto.CommissionVendeurDTO" %>
+<%@ page import="mg.itu.utils.FrontUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
   List<CommissionVendeurDTO> commissions = (List<CommissionVendeurDTO>) request.getAttribute("commissions");
-
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,13 @@
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>idvente</th>
+          <th>medicament</th>
+          <th>prix unitaire</th>
+          <th>quantité</th>
+          <th>prix vente total</th>
           <th>Vendeur</th>
+          <th>Date de vente</th>
           <th>commission</th>
         </tr>
         </thead>
@@ -55,13 +60,19 @@
         <% if (commissions != null && !commissions.isEmpty()) { %>
         <% for (CommissionVendeurDTO commission : commissions) { %>
         <tr>
-          <td><%=commission.getVendeur().getName()%></td>
-          <td><%=commission.getCommission()%></td>
+          <td><%=commission.getVente().getId()%></td>
+          <td><%=commission.getVente().getProduit().getLabel()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixUnitaire())%></td>
+          <td><%=commission.getVente().getQuantite()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixTotal())%></td>
+          <td><%=commission.getVente().getVendeur().getName()%></td>
+          <td><%=FrontUtils.dateFormater(commission.getVente().getDateVente())%></td>
+          <td><%=FrontUtils.priceFormater(commission.getCommission())%></td>
         </tr>
         <% } %>
         <% } else { %>
         <tr>
-          <td colspan="3" style="text-align: center;">Aucun élément n'a été trouvé</td>
+          <td colspan="8" style="text-align: center;">Aucun élément n'a été trouvé</td>
         </tr>
         <% } %>
         </tbody>
@@ -75,7 +86,7 @@
 <!-- Footer -->
 <footer>
   <p>&copy; 2024 Pharmacie. Tous droits réservés.</p>
-</footer>
+</footer>§
 
 <!-- jQuery -->
 <script src="assets/js/jquery.min.js"></script>

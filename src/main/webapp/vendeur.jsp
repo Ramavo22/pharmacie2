@@ -1,10 +1,12 @@
 <%@ page import="mg.itu.entity.Laboratoire" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.vente.Vendeur" %>
+<%@ page import="mg.itu.entity.Genre" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
   List<Vendeur> vendeurs = (List<Vendeur>) request.getAttribute("vendeurs");
+  List<Genre> genres = (List<Genre>) request.getAttribute("genres");
 
 %>
 <!DOCTYPE html>
@@ -34,6 +36,17 @@
           <label for="nom">Nom du Vendeur :</label>
           <input type="text" class="form-control" id="nom" name="nom" required>
         </div>
+        <div class="form-group">
+          <label for="nomm">Genre :</label>
+          <select class="form-control" name="genreId">
+              <% for(Genre genre: genres){ %>
+            <option value="<%=genre.getId()%>"><%=genre.getLabel()%></option>
+            <%}%>
+          </select>
+
+        </div>
+
+
 
         <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
@@ -45,14 +58,16 @@
         <tr>
           <th>ID</th>
           <th>Nom</th>
+          <th>Genre</th>
         </tr>
         </thead>
         <tbody>
         <% if(!vendeurs.isEmpty() || vendeurs != null){ %>
           <%for (Vendeur vendeur : vendeurs){%>
           <tr>
-            <td><%vendeur.getId()%></td>
-            <td><%vendeur.getName()%></td>
+            <td><%=vendeur.getId()%></td>
+            <td><%=vendeur.getName()%></td>
+            <td><%=vendeur.getGenre().getLabel()%></td>
           </tr>
        <%}
        } else { %>

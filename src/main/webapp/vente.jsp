@@ -3,6 +3,7 @@
 <%@ page import="mg.itu.entity.produit.Produit" %>
 <%@ page import="mg.itu.entity.Client" %>
 <%@ page import="mg.itu.entity.vente.Vendeur" %>
+<%@ page import="mg.itu.utils.FrontUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -54,6 +55,7 @@
                             <option value="<%=client.getId()%>"><%=client.getLabel()%></option>
                             <%  }%>
                         </select>
+                        <label class="label label-info">Vendeur :</label>
                         <select class="form-control" name="vendeurId">
                             <% for(Vendeur vendeur : vendeurs){ %>
                             <option value="<%=vendeur.getId()%>"><%=vendeur.getName()%></option>
@@ -74,6 +76,7 @@
                         <th>Prix Unitaire</th>
                         <th>Qte</th>
                         <th>Prix Total</th>
+                        <th>Date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,9 +87,10 @@
                     <tr>
                         <td><%= vente.getId() %></td>
                         <td><%= vente.getProduit().getLabel() %></td>
-                        <td><%= vente.getPrixUnitaire() %></td>
+                        <td><%= FrontUtils.priceFormater(vente.getPrixUnitaire()) %></td>
                         <td><%= vente.getQuantite() %></td>
-                        <td><%= vente.getQuantite() * vente.getPrixUnitaire() %></td>
+                        <td><%= FrontUtils.priceFormater(vente.getPrixTotal()) %></td>
+                        <td><%=FrontUtils.dateFormater(vente.getDateVente())%></td>
                     </tr>
                     <%
                         }

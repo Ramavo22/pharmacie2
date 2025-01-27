@@ -2,15 +2,15 @@ package mg.itu.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import mg.itu.entity.vente.Vendeur;
+
+import lombok.NoArgsConstructor;
 import mg.itu.entity.vente.Vente;
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CommissionVendeurDTO {
-    Vendeur vendeur;
+    Vente vente;
     Double commission;
 }

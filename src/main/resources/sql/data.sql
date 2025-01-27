@@ -106,11 +106,15 @@ INSERT INTO client (label) VALUES
                        ('Raharijaona'),
                        ('Rakotodranivo');
 
-INSERT INTO vendeur (name) VALUES
-                       ('Vendeur 1'),
-                       ('Vendeur 2'),
-                       ('Vendeur 3'),
-                       ('Vendeur 4');
+INSERT INTO genre (label) VALUES
+      ('Homme'),
+      ('Femme');
+
+INSERT INTO vendeur (name,genre_id) VALUES
+                       ('Vendeur 1',1),
+                       ('Vendeur 2',2),
+                       ('Vendeur 3',1),
+                       ('Vendeur 4',2);
 
 INSERT INTO vente (produit_id, prixunitaire, quantite, datevente, client_id) VALUES
     (1, 5000, 10, '2025-01-01 09:00:00', 1), -- Vente de Paracétamol par Rakoto
@@ -134,7 +138,5 @@ INSERT INTO vente (produit_id, prixunitaire, quantite, datevente, client_id) VAL
     (19, 4000, 18, '2025-01-19 10:30:00', 1), -- Spray Nasal par Rakoto
     (20, 8000, 10, '2025-01-20 15:00:00', 2); -- Antiviral Oral par Rabe
 
-INSERT INTO genre (label) VALUES
-(Homme),
-(Femme);
+
 

@@ -36,6 +36,9 @@ public class VenteService {
         catch (Exception e){
             e.printStackTrace();
         }
+        finally {
+            if(em.isOpen()) em.close();
+        }
     }
 
     public static List<Vente> findByTypePersAndUsage(Integer typePersonneId, Integer usageId) {
@@ -55,7 +58,9 @@ public class VenteService {
         if (usageId != null) {
             query.setParameter("usageId", usageId);
         }
-        return query.getResultList();
+        List<Vente> ventes = query.getResultList();
+        if(em.isOpen()) em.close();
+        return ventes;
     }
 
 
@@ -76,7 +81,9 @@ public class VenteService {
         if (date != null) {
             query.setParameter("date", date);
         }
-        return query.getResultList();
+        List<Vente> ventes = query.getResultList();
+        if(em.isOpen()) em.close();
+        return ventes;
     }
 
 }

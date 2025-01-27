@@ -10,6 +10,8 @@ public class ClientService {
 
     public static List<Client> findAll() {
         EntityManager em = JPAUtils.getEntityManager();
-        return em.createQuery("select c from Client c", Client.class).getResultList();
+        List<Client> clients = em.createQuery("select c from Client c", Client.class).getResultList();
+        if(em.isOpen()) em.close();
+        return clients;
     }
 }

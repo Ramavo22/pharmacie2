@@ -31,7 +31,6 @@
             <h1>Insertion Produit du mois</h1>
             <form action="${pageContext.request.contextPath}/produitMois" method="post">
                 <div class="form-group">
-
                     <select name="produitId" class="form-control">
                         <option value="">Choisir</option>
                         <% for(Produit produit : produits){ %>

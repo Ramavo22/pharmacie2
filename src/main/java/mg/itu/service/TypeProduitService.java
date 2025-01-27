@@ -10,6 +10,8 @@ public class TypeProduitService {
 
     public static List<TypeProduit> findAll(){
         EntityManager em = JPAUtils.getEntityManager();
-        return em.createQuery("from TypeProduit", TypeProduit.class).getResultList();
+        List<TypeProduit> typeProduits = em.createQuery("SELECT t FROM TypeProduit t", TypeProduit.class).getResultList();
+        em.close();
+        return typeProduits;
     }
 }

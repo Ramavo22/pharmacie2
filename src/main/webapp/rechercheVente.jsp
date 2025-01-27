@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.*" %>
 <%@ page import="mg.itu.entity.vente.Vente" %>
+<%@ page import="mg.itu.utils.FrontUtils" %>
 
 Created by IntelliJ IDEA.
   User: Ramavo Harinaivo
@@ -67,24 +68,23 @@ Created by IntelliJ IDEA.
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>date de vente</th>
                     <th>Produit</th>
-                    <th>Quantité</th>
                     <th>Prix Unitaire</th>
-                    <th>Prix vente</th>
-                
+                    <th>Qte</th>
+                    <th>Prix Total</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                  <tbody>
                 <% if (ventes != null && !ventes.isEmpty()) { %>
                 <% for (Vente vente : ventes) { %>
                 <tr>
-                    <td><%=vente.getId()%></td>
-                    <td><%=vente.getDateVente()%></td>
-                    <td><%=vente.getProduit().getLabel()%></td>
-                    <td><%=vente.getQuantite()%></td>
-                    <td><%=vente.getPrixUnitaire()%></td>
-                    <td><%=vente.getPrixUnitaire()* vente.getQuantite()%></td>
+                    <td><%= vente.getId() %></td>
+                    <td><%= vente.getProduit().getLabel() %></td>
+                    <td><%= FrontUtils.priceFormater(vente.getPrixUnitaire()) %></td>
+                    <td><%= vente.getQuantite() %></td>
+                    <td><%= FrontUtils.priceFormater(vente.getPrixTotal()) %></td>
+                    <td><%=FrontUtils.dateFormater(vente.getDateVente())%></td>
                 </tr>
                 <% } %>
                 <% } else { %>

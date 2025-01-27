@@ -129,8 +129,8 @@ public class ProduitService {
         if (maladieId != null) {
             query.setParameter("maladieId", maladieId);
         }
-
-        return query.getResultList();
+        List<Produit> produits = query.getResultList();
+        return produits;
     }
 
 

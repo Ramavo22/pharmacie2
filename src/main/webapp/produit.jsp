@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.entity.*" %>
 <%@ page import="mg.itu.entity.produit.Produit" %>
+<%@ page import="mg.itu.utils.FrontUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
@@ -120,7 +121,7 @@
                 <tr>
                     <td><%= produit.getId() %></td>
                     <td><%= produit.getLabel() %></td>
-                    <td><%= produit.getPrix() %></td>
+                    <td><%= FrontUtils.priceFormater(produit.getPrix()) %></td>
                     <td><%= produit.getTypeProduit().getLabel() %></td>
                     <td><%= produit.getTypePersonne().getNom() %></td>
                     <td><%= produit.getLaboratoire() != null ? produit.getLaboratoire().getLabel() : "Non spécifier" %></td>

@@ -23,6 +23,7 @@
 
         <class>mg.itu.entity.vente.Vendeur</class>
         <class>mg.itu.entity.commission.Commission</class>
+        <class>mg.itu.entity.Genre</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>

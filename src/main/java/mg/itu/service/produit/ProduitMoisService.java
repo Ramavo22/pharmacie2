@@ -37,7 +37,9 @@ public class ProduitMoisService {
         TypedQuery<ProduitMois> query = em.createQuery(jpql, ProduitMois.class);
         query.setParameter("month", month);
         query.setParameter("year", year);
-        return query.getResultList();
+        List<ProduitMois> produitMois = query.getResultList();
+        em.close();
+        return produitMois;
     }
 
     public static List<ProduitMois> findAllByMonth2(Integer month,Integer year) {
@@ -58,11 +60,15 @@ public class ProduitMoisService {
         if(year != null){
             query.setParameter("year", year);
         }
-        return query.getResultList();
+        List<ProduitMois> produitMois = query.getResultList();
+        em.close();
+        return produitMois;
     }
 
     public static List<ProduitMois> findAll() {
         EntityManager em = JPAUtils.getEntityManager();
-        return em.createQuery("SELECT pm FROM ProduitMois pm", ProduitMois.class).getResultList();
+        List<ProduitMois> produitMois = em.createQuery("SELECT pm FROM ProduitMois pm", ProduitMois.class).getResultList();
+        em.close();
+        return produitMois;
     }
 }

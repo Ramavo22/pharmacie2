@@ -1,10 +1,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.dto.CommissionVendeurDTO" %>
+<%@ page import="mg.itu.entity.Genre" %>
+<%@ page import="mg.itu.utils.FrontUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-  List<CommissionVendeurDTO> commissions = (List<CommissionVendeurDTO>) request.getAttribute("commissions");
+  List<CommissionVendeurDTO> commissionHomme = (List<CommissionVendeurDTO>) request.getAttribute("hommes");
+  List<CommissionVendeurDTO> commissionFemme = (List<CommissionVendeurDTO>) request.getAttribute("femmes");
 
-
+  Double totalHomme = (Double) request.getAttribute("totalHomme");
+  Double totalFemme = (Double) request.getAttribute("totalFemme");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +31,7 @@
       <div class="row">
 
         <h1 class="h1 text-center"> Recherche Vente Par Clients</h1>
-        <form action="${pageContext.request.contextPath}/commission" method="post">
+        <form action="${pageContext.request.contextPath}/commission2" method="post">
 
           <div class="col-lg-4">
             <label for="date1" class="label label-info">Debut :</label>
@@ -40,12 +44,7 @@
           </div>
 
           <div class="col-lg-4">
-            <select name="produitId" class="form-control">
-                <option value="">Choisir genre</option>
-                <% for(Genre genre : genre){ %>
-                <option value="<%=genre.getId()%>"><%=genre.getLabel()%></option>
-                <% } %>
-            </select>
+
           </div>
             
           <div class="col-lg-2">
@@ -56,31 +55,37 @@
 
       <h2>Liste des Ventes</h2>
 
-      <%-- table homme --%>
+      <h3 class="text-info">Homme: <%=totalHomme != null ? FrontUtils.priceFormater(totalHomme) : ""%></h3>
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>idvente</th>
+          <th>medicament</th>
+          <th>prix unitaire</th>
+          <th>quantité</th>
+          <th>prix vente total</th>
           <th>Vendeur</th>
+          <th>Date de vente</th>
           <th>commission</th>
-          <th>Vente</th>
-          <th>Prix de vente</th>
-
         </tr>
         </thead>
         <tbody>
-        <% if (commissions != null && !commissions.isEmpty()) { %>
-        <% for (CommissionVendeurDTO commission : commissions) { %>
+        <% if (commissionHomme != null && !commissionHomme.isEmpty()) { %>
+        <% for (CommissionVendeurDTO commission : commissionHomme) { %>
         <tr>
-          <td><%=commission.getVendeur().getName()%></td>
-          <td><%=commission.getCommission()%></td>
           <td><%=commission.getVente().getId()%></td>
-          <td><%=commission.getVente().getPrixUnitaire()%></td>
-
+          <td><%=commission.getVente().getProduit().getLabel()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixUnitaire())%></td>
+          <td><%=commission.getVente().getQuantite()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixTotal())%></td>
+          <td><%=commission.getVente().getVendeur().getName()%></td>
+          <td><%=FrontUtils.dateFormater(commission.getVente().getDateVente())%></td>
+          <td><%=FrontUtils.priceFormater(commission.getCommission())%></td>
         </tr>
         <% } %>
         <% } else { %>
         <tr>
-          <td colspan="3" style="text-align: center;">Aucun élément n'a été trouvé</td>
+          <td colspan="7" style="text-align: center;">Aucun élément n'a été trouvé</td>
         </tr>
         <% } %>
         </tbody>
@@ -88,30 +93,37 @@
       </table>
 
     <%-- table femme --%>
+      <h3 class="text-info">Femme: <%=totalFemme != null ? FrontUtils.priceFormater(totalFemme) : ""%> </h3>
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>idvente</th>
+          <th>medicament</th>
+          <th>prix unitaire</th>
+          <th>quantité</th>
+          <th>prix vente total</th>
           <th>Vendeur</th>
+          <th>Date de vente</th>
           <th>commission</th>
-          <th>Vente</th>
-          <th>Prix de vente</th>
-
         </tr>
         </thead>
         <tbody>
-        <% if (commissions != null && !commissions.isEmpty()) { %>
-        <% for (CommissionVendeurDTO commission : commissions) { %>
+        <% if (commissionFemme != null && !commissionFemme.isEmpty()) { %>
+        <% for (CommissionVendeurDTO commission : commissionFemme) { %>
         <tr>
-          <td><%=commission.getVendeur().getName()%></td>
-          <td><%=commission.getCommission()%></td>
           <td><%=commission.getVente().getId()%></td>
-          <td><%=commission.getVente().getPrixUnitaire()%></td>
-
+          <td><%=commission.getVente().getProduit().getLabel()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixUnitaire())%></td>
+          <td><%=commission.getVente().getQuantite()%></td>
+          <td><%=FrontUtils.priceFormater(commission.getVente().getPrixTotal())%></td>
+          <td><%=commission.getVente().getVendeur().getName()%></td>
+          <td><%=FrontUtils.dateFormater(commission.getVente().getDateVente())%></td>
+          <td><%=FrontUtils.priceFormater(commission.getCommission())%></td>
         </tr>
         <% } %>
         <% } else { %>
         <tr>
-          <td colspan="3" style="text-align: center;">Aucun élément n'a été trouvé</td>
+          <td colspan="7" style="text-align: center;">Aucun élément n'a été trouvé</td>
         </tr>
         <% } %>
         </tbody>

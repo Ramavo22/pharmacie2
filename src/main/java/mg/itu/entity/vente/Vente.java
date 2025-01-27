@@ -44,4 +44,9 @@ public class Vente {
 
     @Column(nullable = false)
     Double prixUnitaire;
+
+
+    public double getPrixTotal(){
+        return quantite * prixUnitaire;
+    }
 }

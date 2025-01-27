@@ -5,6 +5,7 @@ import mg.itu.entity.produit.Produit;
 import mg.itu.entity.produit.ProduitMois;
 import mg.itu.service.MaladieService;
 import mg.itu.service.produit.ProduitMoisService;
+import mg.itu.service.produit.ProduitService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        ProduitService.findAll();
         System.out.println("create");
     }
 }

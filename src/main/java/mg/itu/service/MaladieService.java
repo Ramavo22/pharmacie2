@@ -19,6 +19,9 @@ public class MaladieService {
             if(em.getTransaction().isActive()) em.getTransaction().rollback();
             e.printStackTrace();
         }
+        finally {
+            if(em.isOpen()) em.close();
+        }
         return newMaladie;
     }
 
@@ -46,7 +49,7 @@ public class MaladieService {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            if (em.getTransaction().isActive()) em.getTransaction().commit();
+            if(em.isOpen()) em.close();
         }
     }
 
@@ -63,7 +66,7 @@ public class MaladieService {
             e.printStackTrace();
         }
         finally {
-            if (em.getTransaction().isActive()) em.getTransaction().commit();
+            if(em.isOpen()) em.close();
         }
     }
 
