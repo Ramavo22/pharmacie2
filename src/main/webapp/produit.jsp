@@ -41,6 +41,11 @@
                     <input type="text" class="form-control" id="nom" name="label" required>
                     <label for="prix">Prix</label>
                     <input type="number" class="form-control" name="prix" id="prix">
+                    <div class="col-lg-4">
+
+                    <label for="date1" class="label label-info">Date Produit :</label>
+                    <input type="date" class="form-control" id="date1" name="date">
+                
                     <label for="laboratoire">Laboratoire</label>
                     <select class="form-control" name="laboratoireId" id="laboratoire">
                         <option value="">choisir</option>
