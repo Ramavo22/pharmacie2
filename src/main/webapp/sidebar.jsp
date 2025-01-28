@@ -24,7 +24,9 @@
         <a href="${pageContext.request.contextPath}/commission" class="list-group-item">Commission vendeur</a>
         <a href="${pageContext.request.contextPath}/commission2" class="list-group-item">Commission vendeur 2</a>
 
-        <a href="${pageContext.request.contextPath}/historiquePrixProduit" class="list-group-item">Historique Prix Produit</a>
+        <a href="${pageContext.request.contextPath}/historiquePrixProduit" class="list-group-item">Historique Prix Produits</a>
+        <a href="${pageContext.request.contextPath}/updatePrix" class="list-group-item">Update Prix Produits</a>
+
 
     </div>
 </div>
